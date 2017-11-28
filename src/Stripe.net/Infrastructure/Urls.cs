@@ -22,6 +22,8 @@
 
         public static string Customers => BaseUrl + "/customers";
 
+        public static string CustomerCards => BaseUrl + "/customers/{0}/cards";
+
         public static string CustomerSources => BaseUrl + "/customers/{0}/sources";
 
         public static string CountrySpecs => BaseUrl + "/country_specs";

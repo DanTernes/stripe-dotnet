@@ -69,6 +69,10 @@ namespace Stripe
         {
             var url = SetupUrl(customerOrRecipientId, isRecipient);
 
+            if (listOptions == null)
+                listOptions = new StripeListOptions();
+            listOptions.AddExtraParam("object", "card");
+
             return Mapper<StripeList<StripeCard>>.MapFromJson(
                 Requestor.GetString(this.ApplyAllParameters(listOptions, url, true),
                 SetupRequestOptions(requestOptions))
@@ -136,6 +140,10 @@ namespace Stripe
         public virtual async Task<StripeList<StripeCard>> ListAsync(string customerOrRecipientId, StripeListOptions listOptions = null, bool isRecipient = false, StripeRequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             var url = SetupUrl(customerOrRecipientId, isRecipient);
+
+            if (listOptions == null)
+                listOptions = new StripeListOptions();
+            listOptions.AddExtraParam("object", "card");
 
             return Mapper<StripeList<StripeCard>>.MapFromJson(
                 await Requestor.GetStringAsync(this.ApplyAllParameters(listOptions, url, true),
